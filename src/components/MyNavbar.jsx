@@ -147,7 +147,11 @@ const MyNavbar = () => {
                 <MenuItem key={setting} onClick={handleCloseNavMenu}>
                   <Link
                     style={{ textDecoration: "none", color: "black" }}
-                    to={setting == "Logout" ? "/Login" : `/${setting}`}
+                    to={
+                      setting.toLowerCase() == "logout"
+                        ? "/login"
+                        : `/${setting.toLowerCase()}`
+                    }
                   >
                     <Typography textAlign="center">{setting}</Typography>
                   </Link>

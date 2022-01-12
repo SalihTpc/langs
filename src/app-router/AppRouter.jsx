@@ -6,6 +6,7 @@ import About from "../pages/About";
 import Dashboard from "../pages/Dashboard";
 import Error from "../pages/Error";
 import Login from "../pages/Login";
+import NewBlog from "../pages/NewBlog";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 
@@ -21,6 +22,7 @@ const AppRouter = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/mycard" element={<MyCard />} />
+        <Route path="/newblog" element={<NewBlog />} />
       </Routes>
     </Router>
   );
