@@ -53,7 +53,6 @@ import MenuItem from "@mui/material/MenuItem";
 import CW from "../assets/cw.svg";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logIn, logOut } from "../redux/actions";
 // import { makeStyles } from "@material-ui/core/styles";
 
 // const useStyles = makeStyles((theme) => ({
@@ -67,7 +66,7 @@ const MyNavbar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const myMail = useSelector((state) => state.myEmailReducer);
   const isLogged = useSelector((state) => state.isLogged);
-  const dispatch = useDispatch();
+
   let settings;
   // if (myMail) {
   //   settings = [("Profile", "NewBlog", "Logout")];
@@ -134,7 +133,10 @@ const MyNavbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt={myMail.charAt(0).toUpperCase()}
+                  src="/static/images/avatar/2.jpg"
+                />
               </IconButton>
             </Tooltip>
             <Menu
