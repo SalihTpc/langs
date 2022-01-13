@@ -10,7 +10,7 @@ export const logIn = () => {
 export const logOut = () => {
   return { type: "SIGN_OUT" };
 };
-export const myEmail = (mail) => {
+export const mountMyEmail = (mail) => {
   return {
     type: "MOUNT",
     payload: mail,
@@ -19,5 +19,11 @@ export const myEmail = (mail) => {
 export const dismountMyEmail = () => {
   return {
     type: "DISMOUNT",
+  };
+};
+export const setDetails = (id) => {
+  return {
+    type: "SET_DETAILS",
+    action: id,
   };
 };

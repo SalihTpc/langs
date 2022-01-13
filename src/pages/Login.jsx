@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useSelector, useDispatch } from "react-redux";
-import { logIn, logOut, myEmail } from "../redux/actions";
+import { logIn, mountMyEmail } from "../redux/actions";
 const theme = createTheme();
 
 export default function Login() {
@@ -26,7 +26,7 @@ export default function Login() {
       log: isLogged,
     });
     dispatch(logIn());
-    dispatch(myEmail("salihtopcu@hotmail.com.tr"));
+    dispatch(mountMyEmail(data.get("email")));
   };
 
   return (
