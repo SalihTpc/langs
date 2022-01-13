@@ -3,17 +3,19 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import { useSelector, useDispatch } from "react-redux";
+import { logIn, logOut, myEmail } from "../redux/actions";
 const theme = createTheme();
 
 export default function Login() {
+  const isLogged = useSelector((state) => state.isLogged);
+  const myMail = useSelector((state) => state.myEmailReducer);
+  const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -21,7 +23,10 @@ export default function Login() {
     console.log({
       email: data.get("email"),
       password: data.get("password"),
+      log: isLogged,
     });
+    dispatch(logIn());
+    dispatch(myEmail("salihtopcu@hotmail.com.tr"));
   };
 
   return (
@@ -67,10 +72,6 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"

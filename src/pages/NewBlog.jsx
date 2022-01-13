@@ -3,26 +3,30 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Data } from "../assets/data";
 
 const theme = createTheme();
 
 export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const newdata = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
-      title: data.get("title"),
-      img_url: data.get("img_url"),
-      desc: data.get("desc"),
-    });
+    const newId = Data.length + 1;
+    const newBlog = {
+      id: newId,
+      title: newdata.get("title"),
+      img_url: newdata.get("img_url"),
+      desc: newdata.get("desc"),
+    };
+    console.log(newBlog);
+    // Data = [...Data, newBlog];
+    console.log("Data:", Data);
   };
 
   return (

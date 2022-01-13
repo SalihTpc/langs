@@ -48,16 +48,13 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import CW from "../assets/cw.svg";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logIn, logOut } from "../redux/actions";
 // import { makeStyles } from "@material-ui/core/styles";
-
-const pages = ["Products", "Pricing", "Blog"];
-const settingsLogin = ["Profile", "NewBlog", "Logout"];
-const settingsLogout = ["Login", "Register"];
 
 // const useStyles = makeStyles((theme) => ({
 //   link: {
@@ -68,10 +65,23 @@ const settingsLogout = ["Login", "Register"];
 const MyNavbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  const myMail = useSelector((state) => state.myEmailReducer);
+  const isLogged = useSelector((state) => state.isLogged);
+  const dispatch = useDispatch();
+  let settings;
+  // if (myMail) {
+  //   settings = [("Profile", "NewBlog", "Logout")];
+  // } else {
+  //   settings = ["Login", "Register"];
+  // }
+  {
+    isLogged && myMail
+      ? (settings = ["Profile", "NewBlog", "Logout"])
+      : (settings = ["Login", "Register"]);
+  }
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -143,12 +153,12 @@ const MyNavbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settingsLogin.map((setting) => (
+              {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseNavMenu}>
                   <Link
                     style={{ textDecoration: "none", color: "black" }}
                     to={
-                      setting.toLowerCase() == "logout"
+                      setting.toLowerCase() === "logout"
                         ? "/login"
                         : `/${setting.toLowerCase()}`
                     }

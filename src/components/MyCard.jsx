@@ -6,13 +6,13 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import { maxHeight } from "@mui/system";
 import { Link } from "react-router-dom";
 
 const MyCard = ({ data }) => {
+  const pathRoute = `/details/${data.id}`;
   return (
     <Card sx={{ m: 2, maxWidth: 345 }}>
-      <Link style={{ textDecoration: "none" }} to="/details">
+      <Link style={{ textDecoration: "none" }} to={pathRoute}>
         <CardActionArea>
           <CardMedia
             component="img"

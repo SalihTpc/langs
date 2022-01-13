@@ -9,8 +9,11 @@ import Login from "../pages/Login";
 import NewBlog from "../pages/NewBlog";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
+import { Data } from "../assets/data";
 
 const AppRouter = () => {
+  const nani = Data.length - 1;
+  const path = `/details/${Data.length}`;
   return (
     <Router>
       <MyNavbar />
@@ -23,6 +26,7 @@ const AppRouter = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/mycard" element={<MyCard />} />
         <Route path="/newblog" element={<NewBlog />} />
+        <Route path={path} element={<MyCard data={Data[nani]} />} />
       </Routes>
     </Router>
   );
